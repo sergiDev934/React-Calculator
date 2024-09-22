@@ -6,8 +6,16 @@ export function App () {
   const number = internalData[internalData.length - 1]
   console.log(internalData)
   const handleClick = e => {
-    const newScreenData = screenData + e.target.textContent
-    setScreenData(newScreenData)
+    if (internalData[internalData.length - 1] === '') {
+      if (e.target.textContent === '0') return ''
+      else {
+        const newScreenData = screenData + e.target.textContent
+        setScreenData(newScreenData)
+      }
+    } else {
+      const newScreenData = screenData + e.target.textContent
+      setScreenData(newScreenData)
+    }
     if (isNaN(e.target.textContent)) {
       if (e.target.textContent !== '.') {
         console.log(e.target.textContent, number)
