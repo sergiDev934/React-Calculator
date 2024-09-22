@@ -18,16 +18,23 @@ export function App () {
     }
     if (!isNaN(e.target.textContent) || e.target.textContent === '.') {
       const updateInternalData = internalData
-      updateInternalData[updateInternalData.length - 1] += e.target.textContent
+      if (isNaN(internalData[internalData.length - 1])) updateInternalData.push(e.target.textContent)
+      else updateInternalData[updateInternalData.length - 1] += e.target.textContent
+
       setInternalData(updateInternalData)
     }
   }
-  const deleteAll = () => setScreenData([])
+  const deleteAll = () => {
+    setScreenData('')
+    setInternalData([''])
+  }
   const handleDelete = () => {
     const newScreenData = screenData.slice(0, -1)
     setScreenData(newScreenData)
   }
   const calculate = () => {
+    const a = eval(screenData)
+    setScreenData(a)
   }
   return (
     <main className='calculator'>
